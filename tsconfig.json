@@ -23,11 +23,12 @@
             "@/components/*": ["components/*"],
             "@/app/*": ["app/*"],
             "@/features/*": ["features/*"],
-            "@/helpers/*": ["helpers/*"],
-            "@/services/*": ["services/*"],
+            "@/config/*": ["configs/*"],
+            "@/apis/*": ["apis/*"],
             "@/stores/*": ["stores/*"],
             "@/types/*": ["types/*"],
-            "@/utils/*": ["utils/*"]
+            "@/hooks/*": ["hooks/*"],
+            "@/utils/*": ["utils/*"],
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
