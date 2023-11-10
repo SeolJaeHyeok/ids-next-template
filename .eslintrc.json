@@ -30,7 +30,7 @@
                 "jsx-a11y/anchor-is-valid": "off",
                 "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
                 "@typescript-eslint/no-explicit-any": "off",
-                "no-console": ["error"],
+                "no-console": ["warn"],
                 "camelcase": "error",
                 "react/prop-types": "off"
             }
