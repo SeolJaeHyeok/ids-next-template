@@ -1,3 +1,5 @@
+import styles from './page.module.scss';
+
 export default function Example() {
-    return <div>예시 페이지</div>;
+    return <div className={styles.example}>예시 페이지</div>;
 }
