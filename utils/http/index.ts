@@ -60,26 +60,21 @@ class HttpClient {
     }
 
     private handleRequestSuccess(config: InternalAxiosRequestConfig): InternalAxiosRequestConfig {
-        console.log('Request Interceptor (Success):', config);
         NProgress.start();
 
         return config;
     }
 
     private handleRequestError(error: any): Promise<any> {
-        console.error('Request Interceptor (Error):', error);
-
         return Promise.reject(error);
     }
 
     private handleResponseSuccess(response: AxiosResponse): AxiosResponse {
-        console.log('Response Interceptor (Success):', response);
         NProgress.done();
         return response;
     }
 
     private handleResponseError(error: any): Promise<any> {
-        console.error('Response Interceptor (Error):', error);
         NProgress.done();
 
         return Promise.reject(error);
