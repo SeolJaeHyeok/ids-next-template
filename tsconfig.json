@@ -43,6 +43,7 @@
         "target": "es5", // ECMAScript 목표 버전 설정
         "lib": ["dom", "dom.iterable", "esnext"], //컴파일 과정에 사용될 라이브러리 파일 설정
         "jsx": "preserve", // jx 코드 컴파일 방식 설정
+        "types": ["node", "jest", "@testing-library/jest-dom"],
 
         /* Completeness */
         "skipLibCheck": true, // 선언 파일(.d.ts) 타입 검사 스킵
