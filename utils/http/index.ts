@@ -8,30 +8,30 @@ import { stringify } from 'qs';
 
 import NProgress from '../n-progress';
 
-const API_BASE_URL = 'https://api.example.com';
-const token = 'example-token';
-
-const defaultConfig: AxiosRequestConfig = {
-    baseURL: API_BASE_URL,
-    timeout: 10000,
-    headers: {
-        Authorization: `Bearer ${token}`,
-    },
-    paramsSerializer: {
-        serialize: (params: any) => {
-            return stringify(params, { arrayFormat: 'repeat' });
-        },
-    },
-};
 class HttpClient {
     private static readonly instance: HttpClient = new HttpClient();
     private readonly axiosInstance: AxiosInstance;
 
     private constructor() {
-        this.axiosInstance = axios.create(defaultConfig);
+        this.axiosInstance = axios.create(this.defaultConfig);
 
         this.httpInterceptorsRequest();
         this.httpInterceptorsResponse();
+    }
+
+    get defaultConfig(): AxiosRequestConfig {
+        return {
+            baseURL: 'https://example.api.com/v1',
+            timeout: 10000,
+            headers: {
+                Authorization: `Bearer example token`,
+            },
+            paramsSerializer: {
+                serialize: (params: any) => {
+                    return stringify(params, { arrayFormat: 'repeat' });
+                },
+            },
+        };
     }
 
     private httpInterceptorsRequest(): void {
@@ -50,10 +50,10 @@ class HttpClient {
 
     public createConfig(config?: AxiosRequestConfig): AxiosRequestConfig {
         return {
-            ...defaultConfig,
+            ...this.defaultConfig,
             ...config,
             headers: {
-                ...defaultConfig.headers,
+                ...this.defaultConfig.headers,
                 ...(config && config.headers), // Overwrite default headers with dynamic headers
             },
         };
@@ -98,11 +98,7 @@ class HttpClient {
         return this.request<T>({ method: 'get', url, params });
     }
 
-    public async post<T, P>(
-        url: string,
-        data?: P,
-        config?: Partial<AxiosRequestConfig>,
-    ): Promise<T> {
+    public async post<T, P>(url: string, data?: P, config?: AxiosRequestConfig): Promise<T> {
         const requestConfig: AxiosRequestConfig = {
             method: 'post',
             url,
@@ -112,16 +108,33 @@ class HttpClient {
         return this.request<T>(requestConfig);
     }
 
-    public async delete<T>(url: string): Promise<T> {
-        return this.request<T>({ method: 'delete', url });
+    public async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+        const requestConfig: AxiosRequestConfig = {
+            method: 'delete',
+            url,
+            ...config,
+        };
+        return this.request<T>(requestConfig);
     }
 
-    public async patch<T, P>(url: string, data?: P): Promise<T> {
-        return this.request<T>({ method: 'patch', url, data });
+    public async patch<T, P>(url: string, data?: P, config?: AxiosRequestConfig): Promise<T> {
+        const requestConfig: AxiosRequestConfig = {
+            method: 'patch',
+            url,
+            data,
+            ...config,
+        };
+        return this.request<T>(requestConfig);
     }
 
-    public async put<T, P>(url: string, data?: P): Promise<T> {
-        return this.request<T>({ method: 'put', url, data });
+    public async put<T, P>(url: string, data?: P, config?: AxiosRequestConfig): Promise<T> {
+        const requestConfig: AxiosRequestConfig = {
+            method: 'put',
+            url,
+            data,
+            ...config,
+        };
+        return this.request<T>(requestConfig);
     }
 }
 
