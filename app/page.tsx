@@ -7,7 +7,7 @@ export default function Home() {
         <main className={styles.main}>
             <div className={styles.description}>
                 <p>
-                    Get Test 4&nbsp;
+                    Get Test 6&nbsp;
                     <code className={styles.code}>app/page.tsx</code>
                 </p>
                 <div>

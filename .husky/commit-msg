@@ -1,0 +1,13 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 원하는 커밋 메시지 형식 (예: "type(scope): description")
+commit_regex='^\[MCCWC-[0-9]+\] (feature|fix|chore|setting): .+$'
+
+commit_message=$(cat "$1")
+
+if ! echo "$commit_message" | grep -Eq "$commit_regex"; then
+  echo "ERROR: 커밋 메시지 형식이 올바르지 않습니다. JIRA TICKET 번호를 반드시 포함시켜 주세요. "
+  echo "Example: '[MCCWC-1234] feat: 공통 컴포넌트 작업'"
+  exit 1
+fi
