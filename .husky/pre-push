@@ -1,4 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo 'Build를 시작합니다.';
+
+
 yarn build
