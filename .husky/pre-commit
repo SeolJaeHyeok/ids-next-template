@@ -36,3 +36,8 @@ yarn type-check || (
  echo 'Typescript 검증에 실패하였습니다.';
  false;
 )
+
+yarn test || (
+ echo 'Typescript 검증에 실패하였습니다.';
+ false;
+)
