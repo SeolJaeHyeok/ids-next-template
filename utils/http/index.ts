@@ -3,9 +3,11 @@ import axios, {
     AxiosRequestConfig,
     AxiosResponse,
     InternalAxiosRequestConfig,
+    isAxiosError,
 } from 'axios';
 import { stringify } from 'qs';
 
+import CustomError from '../custom-error';
 import NProgress from '../n-progress';
 
 class HttpClient {
@@ -54,7 +56,7 @@ class HttpClient {
             ...config,
             headers: {
                 ...this.defaultConfig.headers,
-                ...(config && config.headers), // Overwrite default headers with dynamic headers
+                ...(config && config.headers),
             },
         };
     }
@@ -89,8 +91,12 @@ class HttpClient {
             const mergedConfig = this.createConfig(config);
             const response: AxiosResponse<T> = await this.axiosInstance.request<T>(mergedConfig);
             return response.data;
-        } catch (error: any) {
-            throw new Error(error);
+        } catch (error) {
+            if (isAxiosError(error)) {
+                throw new CustomError('Axios Error Occured!', { details: error });
+            }
+
+            throw new CustomError('Runtime Error Occured', { details: error });
         }
     }
 
