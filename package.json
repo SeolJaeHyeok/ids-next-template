@@ -1,18 +1,18 @@
 {
-    "name": "ids-next-template",
+    "name": "milkboy-next-template",
     "version": "1.0.0",
     "private": true,
     "keywords": [
         "nextjs",
         "react",
-        "ids"
+        "milkboy"
     ],
     "author": {
         "name": "Jaehyeok-Seol",
         "email": "milkboy2564@gmail.com",
         "url": "https://github.com/SeolJaeHyeok"
     },
-    "description": "NextJS Boilerplate for IdsTrust",
+    "description": "NextJS Boilerplate for myself",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
